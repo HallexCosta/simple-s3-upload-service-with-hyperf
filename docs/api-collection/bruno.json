@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Simple S3 Service Hyperf",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

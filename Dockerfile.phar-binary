@@ -1,0 +1,18 @@
+FROM ubuntu:22.04
+# FROM hyperf/hyperf:8.1-alpine-v3.16-swoole-v5.0.3
+LABEL maintainer="Hallex Costa <hallex.costa@hotmail.com>" version="1.0" license="MIT" app.name="Simple Service Upload S3 Hyperf"
+
+WORKDIR /
+
+# Composer Cache
+# COPY ./composer.* /opt/www/
+# RUN composer install --no-dev --no-scripts
+
+# COPY . /opt/www
+# RUN composer install --no-dev -o && php bin/hyperf.php
+
+COPY ./bin/app-static-phar-binary ./app
+
+EXPOSE 9501
+
+ENTRYPOINT ["/app", "start"]

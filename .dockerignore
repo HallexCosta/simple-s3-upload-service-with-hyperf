@@ -1,0 +1,7 @@
+**
+!.phar
+!hyperf.phar
+!app/
+!bin/
+!config/
+!composer.*

@@ -1,0 +1,73 @@
+services:
+  api01:
+    container_name: api01
+    # image: hyperf-skeleton
+    image: simple-service-s3
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - ./:/opt/www
+    ports:
+      - 9501:9501
+    environment:
+      - APP_ENV=dev
+      - SCAN_CACHEABLE=false
+
+  api02:
+    container_name: api02
+    # image: hyperf-skeleton
+    image: simple-service-s3-phar
+    build:
+      context: .
+      dockerfile: ./Dockerfile.phar
+    # command: ["/opt/www/bin/hyperf.php", "start"]
+    command: ["/opt/www/hyperf.phar", "start"]
+    volumes:
+      - ./:/opt/www
+    ports:
+      - 9502:9501
+    environment:
+      - APP_ENV=dev
+      - SCAN_CACHEABLE=false
+      - PATH_RUNTIME_LOG=/tmp/runtime/logs/hyperf.log
+      - PATH_RUNTIME_PID_FILE=/tmp/runtime/hyperf.pid
+
+  api03:
+    container_name: api03
+    # image: hyperf-skeleton
+    image: simple-service-s3-phar-static-binary
+    build:
+      context: .
+      dockerfile: ./Dockerfile.phar-binary
+    # command: ["/opt/www/bin/hyperf.php", "start"]
+    # command: ["/opt/www/hyperf.phar", "start"]
+    # volumes:
+    #   - ./:/opt/www
+    ports:
+      - 9502:9501
+    environment:
+      - APP_ENV=dev
+      - SCAN_CACHEABLE=false
+
+  api04:
+    container_name: api04
+    # image: hyperf-skeleton
+    image: simple-service-s3-static-binary
+    build:
+      context: .
+      dockerfile: ./Dockerfile.binary
+    # command: ["/opt/www/bin/hyperf.php", "start"]
+    # command: ["/opt/www/hyperf.phar", "start"]
+    # volumes:
+      # - ./hyperf.phar:/opt/www/hyperf.phar
+    ports:
+      - 9504:9501
+    environment:
+      - APP_ENV=dev
+      - SCAN_CACHEABLE=false
+
+networks:
+  default:
+    external: true
+    name: net

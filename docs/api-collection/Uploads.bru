@@ -1,0 +1,15 @@
+meta {
+  name: Uploads
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/uploads
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  photo: @file(/home/hallexcosta/Downloads/Hallex Documentos/hallex-linkedin-profile.jpeg)
+}
